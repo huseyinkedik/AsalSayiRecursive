@@ -1,32 +1,26 @@
 import java.util.Scanner;
 
 public class Main {
-    static void asal(int a) {
-        boolean asalMi = true;
+    static boolean asal(int sayi, int i) {
 
-        if (a < 2) {
-            asalMi = false;   // 1 ve 1'den küçükse asal sayı değildir
+        if (i == 1) {
+            return true;
+        } else if (sayi % i == 0) {
+            return false;
         } else {
-
-            for (int i = 2; i < a; i++) {
-                if (a % i == 0) {
-                    asalMi = false;
-                    break;
-                }
-            }
-        }
-
-        if (asalMi) {
-            System.out.println(a + " asal sayıdır");
-        } else {
-            System.out.println(a + " asal sayı değildir");
+            return asal(sayi, i - 1);
         }
     }
 
     public static void main(String[] args) {
         Scanner inp = new Scanner(System.in);
         System.out.println("Sayı giriniz: ");
-        int a = inp.nextInt();
-        asal(a);
+        int sayi = inp.nextInt();
+
+        if (asal(sayi, sayi / 2)) {
+            System.out.println(sayi + " asal sayıdır");
+        } else {
+            System.out.println(sayi + " asal sayı değildir");
+        }
     }
 }
